@@ -1,11 +1,14 @@
 import 'package:android_django/bloc/user_data/user_data_bloc.dart';
 import 'package:android_django/description_screen.dart';
+import 'package:android_django/general_stat_screen.dart';
+import 'package:android_django/georg.dart';
 import 'package:android_django/last_vacancies.dart';
+import 'package:android_django/stat_screen.dart';
+import 'package:android_django/vost.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sidebarx/sidebarx.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
@@ -216,29 +219,10 @@ class _MyAppState extends State<MyApp> {
                                 controller: pageController,
                                 children: [
                                   DescriptionScreen(),
-                                  Container(
-                                    child: Center(
-                                      child: Text('Expansion Item 1'),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Center(
-                                      child: Text('Expansion Item 2'),
-                                    ),
-
-                                  ),
-                                  Container(
-                                    child: Center(
-                                      child: Text('Expansion Item 2'),
-                                    ),
-
-                                  ),
-                                  Container(
-                                    child: Center(
-                                      child: Text('Expansion Item 2'),
-                                    ),
-
-                                  ),
+                                  GeneralStatScreen(),
+                                  VostScreen('Востребованность для профессии\nAndroid-разработчик', ['salary', 'count']),
+                                  GeogrScreen('География для профессии\nAndroid-разработчик', ['salary_city', 'ratio']),
+                                  SkillsScreen('Навыки для профессии\nAndroid-разработчик', ['salary_city', 'ratio']),
                                   LastVacancies()
                                 ],
                               ),

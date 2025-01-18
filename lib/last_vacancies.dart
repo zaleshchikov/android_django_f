@@ -5,7 +5,15 @@ import "package:intl/intl.dart";
 
 class LastVacancies extends StatelessWidget {
   const LastVacancies({super.key});
+  String removeAllHtmlTags(String htmlText) {
+    RegExp exp = RegExp(
+        r"<[^>]*>",
+        multiLine: true,
+        caseSensitive: true
+    );
 
+    return htmlText.replaceAll(exp, '');
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -79,14 +87,16 @@ class LastVacancies extends StatelessWidget {
                                             Container(
                                                 width: size.width * 0.5,
                                                 height: size.height / 10,
-                                                child: Text(
-                                                    state.vacancies[index]
-                                                        .description,
+                                                child:
+                                                Text(
+                                                    removeAllHtmlTags(state.vacancies[index]
+                                                        .description),
                                                     style: theme
                                                         .textTheme.labelMedium!
                                                         .copyWith(
                                                             color: Colors
-                                                                .black87))),
+                                                                .black87))
+                                            ),
                                           ],
                                         ),
                                         Row(
