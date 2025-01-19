@@ -1,9 +1,8 @@
 import 'package:android_django/bloc/general_stat/general_stat_bloc.dart';
-import 'package:android_django/bloc/particular_stat/particular_stat_bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:android_django/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class GeogrScreen extends StatelessWidget {
   String screenName;
@@ -43,64 +42,92 @@ class GeogrScreen extends StatelessWidget {
                     ],
                   ),
                   Container(height: size.height / 100),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(size.height / 100),
-                          height: size.height * 0.65,
-                          width: size.width * 0.4,
-                          decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border.all(color: Colors.black87),
-                              borderRadius: BorderRadius.circular(40)),
-                          child: Container(
-                            height: size.height * 0.55,
-                            width: size.width * 0.3,
-                            foregroundDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40)),
+                  Container(
+                    height: size.height*0.6,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.all(size.height / 100),
+                            height: size.height * 0.65,
+                            width: size.width * 0.4,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      state.ratio!.professionURL,
-                                    ),
-                                    fit: BoxFit.contain)),
-                          )),
-                      HtmlWidget(
-                        state.ratio!.professionHTML,
-                      ),
-                    ],
+                                color: Colors.transparent,
+                                border: Border.all(color: Colors.black87),
+                                borderRadius: BorderRadius.circular(40)),
+                            child: Container(
+                              height: size.height * 0.55,
+                              width: size.width * 0.3,
+                              foregroundDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40)),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        state.ratio!.professionURL,
+                                      ),
+                                      fit: BoxFit.contain)),
+                            )),
+                        Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(size.height/100),
+                              height: size.height*0.5,
+                              width: size.width*0.5,
+                              child: buildHtmlTable(state.ratio!.professionHTML),
+                            ),
+                          ],
+                        )
+                        // HtmlWidget(
+                        //   state.ratio!.professionHTML,
+                        // ),
+                      ],
+                    ),
                   ),
                   Container(height: size.height / 100),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(size.height / 100),
-                          height: size.height * 0.65,
-                          width: size.width * 0.4,
-                          decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border.all(color: Colors.black87),
-                              borderRadius: BorderRadius.circular(40)),
-                          child: Container(
-                            height: size.height * 0.55,
-                            width: size.width * 0.3,
-                            foregroundDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40)),
+                  Container(
+                    height: size.height*0.6,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.all(size.height / 100),
+                            height: size.height * 0.65,
+                            width: size.width * 0.4,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      state.salaryCity!.professionURL,
-                                    ),
-                                    fit: BoxFit.contain)),
-                          )),
-                      HtmlWidget(
-                        state.salaryCity!.professionHTML,
-                      ),
-                    ],
+                                color: Colors.transparent,
+                                border: Border.all(color: Colors.black87),
+                                borderRadius: BorderRadius.circular(40)),
+                            child: Container(
+                              height: size.height * 0.55,
+                              width: size.width * 0.3,
+                              foregroundDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40)),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        state.salaryCity!.professionURL,
+                                      ),
+                                      fit: BoxFit.contain)),
+                            )),
+                        Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(size.height/100),
+                              height: size.height*0.5,
+                              width: size.width*0.5,
+                              child: buildHtmlTable(state.salaryCity!.professionHTML),
+                            ),
+                          ],
+                        )
+
+
+                        // HtmlWidget(
+                        //   state.salaryCity!.professionHTML,
+                        // ),
+                      ],
+                    ),
                   ),
                 ],
               ),

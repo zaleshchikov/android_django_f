@@ -37,7 +37,7 @@ class DescriptionScreen extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    image: DecorationImage(image: CachedNetworkImageProvider(
+                    image: DecorationImage(image: NetworkImage(
                       state.url1,
                     ), fit: BoxFit.cover)
                   ),
@@ -73,7 +73,7 @@ class DescriptionScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            image: DecorationImage(image: CachedNetworkImageProvider(
+                            image: DecorationImage(image: NetworkImage(
                               state.url3,
                             ), fit: BoxFit.cover)
                         ),

@@ -9,10 +9,9 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:html/parser.dart' as html_parser;
 
 void main() {
-  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -259,4 +258,48 @@ class _MyAppState extends State<MyApp> {
           ),
         ));
   }
+}
+
+Widget buildHtmlTable(String htmlString) {
+  // Парсим HTML
+  final document = html_parser.parse(htmlString);
+
+  // Получаем элементы таблицы
+  final table = document.getElementsByTagName('table').first;
+  final rows = table.getElementsByTagName('tr');
+
+  // Создаем список виджетов для строк таблицы
+  List<TableRow> tableRows = [];
+
+  for (var row in rows) {
+    final cells = row.getElementsByTagName('th').isNotEmpty
+        ? row.getElementsByTagName('th') // Заголовки
+        : row.getElementsByTagName('td'); // Обычные ячейки
+
+    List<Widget> cellWidgets = cells.map((cell) {
+      return Container(
+        height: 50,
+        width: 50,
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          cell.text,
+          style: TextStyle(
+            fontWeight: cells.first == cell ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+      );
+    }).toList();
+
+    tableRows.add(TableRow(children: cellWidgets));
+  }
+
+  return Container(
+    height: 200,
+    width: 200,
+    child: Table(
+      defaultColumnWidth: IntrinsicColumnWidth(),
+      border: TableBorder.all(),
+      children: tableRows,
+    ),
+  );
 }
